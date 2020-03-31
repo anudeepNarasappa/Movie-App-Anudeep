@@ -1,23 +1,32 @@
 import * as React from 'react';
 import {View, Text} from 'react-native';
+import {Provider, connect} from 'react-redux';
+import store from './src/store/store'; //Import the store
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import MovieListScreen from './src/screens/Home';
 import MovieDetailsScreen from './src/screens/Details';
-const Stack = createStackNavigator();
+// Create our stack navigator
+let RootStack = createStackNavigator();
 
-function App() {
+// Render the app container component with the provider around it
+export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="MoviesListScreen">
-        <Stack.Screen name="MoviesListScreen" component={MovieListScreen} />
-        <Stack.Screen
-          name="MovieDetailsScreen"
-          component={MovieDetailsScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RootStack.Navigator
+          initialRouteName="MoviesListScreen"
+          headerMode="none">
+          <RootStack.Screen
+            name="MoviesListScreen"
+            component={MovieListScreen}
+          />
+          <RootStack.Screen
+            name="MovieDetailsScreen"
+            component={MovieDetailsScreen}
+          />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-export default App;

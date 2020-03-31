@@ -1,20 +1,10 @@
-import * as React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, ActivityIndicator, SafeAreaView} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
-
-const styles = StyleSheet.create({
-  instructions: {
-    color: '#333333',
-    marginBottom: 5,
-    textAlign: 'center',
-  },
-  welcome: {
-    fontSize: 20,
-    margin: 10,
-    textAlign: 'center',
-  },
-});
-
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchDataSource} from '../../store/epic';
+import PosterContainer from '../../components/PosterContainer';
+import CardItem from '../../components/CardItem';
 type RootStackParamList = {
   MovieDetailsScreen: {};
 };
@@ -28,19 +18,48 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
 };
 
-const MovieListScreen = ({navigation}: Props) => (
-  <>
-    <View>
-      <Text style={styles.welcome}>Welcome to MovieListScreen</Text>
-      <Text style={styles.instructions}>
-        To get started, edit ./src/containers/App/index.tsx
-      </Text>
-      <Button
-        title="Go to Movies Description screen"
-        onPress={() => navigation.navigate('MovieDetailsScreen')}
-      />
-    </View>
-  </>
-);
+export default function MovieListScreen({navigation}: Props) {
+  const dispatch = useDispatch();
 
-export default MovieListScreen;
+  //1 - DECLARE VARIABLES
+  const [isFetching, setIsFetching] = useState(false);
+
+  //Access Redux Store State
+  const dataReducer = useSelector((state) => state.dataReducer);
+  const {data} = dataReducer;
+
+  //2 - MAIN CODE BEGINS HERE
+  useEffect(() => getData(), []);
+
+  //3 - GET FLATLIST DATA
+  const getData = () => {
+    setIsFetching(true);
+    setTimeout(() => {
+      dispatch(fetchDataSource());
+      setIsFetching(false);
+    }, 2000);
+  };
+
+  //4 - RENDER FLATLIST ITEM
+  <CardItem />;
+
+  //5 - RENDER
+  if (data["movie"] === undefined || isFetching) {
+    return (
+      <SafeAreaView style={styles.activityIndicatorContainer}>
+        <ActivityIndicator animating={true} />
+      </SafeAreaView>
+    );
+  } else {
+    return <PosterContainer data={data} renderItem={CardItem} />;
+  }
+}
+
+const styles = StyleSheet.create({
+  activityIndicatorContainer: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+});

@@ -2,19 +2,6 @@ import * as React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-const styles = StyleSheet.create({
-  instructions: {
-    color: '#333333',
-    marginBottom: 5,
-    textAlign: 'center',
-  },
-  welcome: {
-    fontSize: 20,
-    margin: 10,
-    textAlign: 'center',
-  },
-});
-
 type RootStackParamList = {
   MovieListScreen: {};
 };
@@ -42,5 +29,18 @@ const MovieDetailsScreen = ({navigation}: Props) => (
     </View>
   </>
 );
+
+const styles = StyleSheet.create({
+  instructions: {
+    color: '#333333',
+    marginBottom: 5,
+    textAlign: 'center',
+  },
+  welcome: {
+    fontSize: 20,
+    margin: 10,
+    textAlign: 'center',
+  },
+});
 
 export default MovieDetailsScreen;
