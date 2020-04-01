@@ -44,7 +44,7 @@ const storeData = async (id) => {
 
 const styles = StyleSheet.create({
   activityIndicatorContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#1D1E28',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,

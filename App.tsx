@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {Provider, connect} from 'react-redux';
 import store from './src/store/store'; //Import the store
@@ -10,7 +10,7 @@ import {
 } from '@react-navigation/stack';
 import MovieListScreen from './src/screens/Home';
 import MovieDetailsScreen from './src/screens/Details';
-
+import SplashScreen from 'react-native-splash-screen';
 // Create our stack navigator
 let RootStack = createStackNavigator();
 
@@ -23,8 +23,11 @@ const MyTransition = {
   headerStyleInterpolator: HeaderStyleInterpolators.forFade,
 };
 
-// Render the app container component with the provider around it
-export default function App() {
+const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -51,4 +54,6 @@ export default function App() {
       </NavigationContainer>
     </Provider>
   );
-}
+};
+
+export default App;

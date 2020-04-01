@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     marginTop: 11,
   },
   activityIndicatorContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#1D1E28',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
