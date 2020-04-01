@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, ActivityIndicator, SafeAreaView} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchDataSource} from '../../store/epic';
+import {fetchDataSource, fetchPosterDetails} from '../../store/epic';
 import PosterContainer from '../../components/PosterContainer';
 import CardItem from '../../components/CardItem';
 type RootStackParamList = {
@@ -37,11 +37,17 @@ function MovieListScreen({navigation}: Props) {
     setTimeout(() => {
       dispatch(fetchDataSource());
       setIsFetching(false);
-    }, 1000);
+    }, 500);
   };
 
   //4 - RENDER FLATLIST ITEM
   // <CardItem sendPosterId={sendPosterIds} />;
+
+  const onCallbackRecieved= (id)=>{
+    console.log(id);
+    dispatch(fetchPosterDetails(id));
+    navigation.navigate('MovieDetailsScreen');
+  }
 
   //5 - RENDER
   if (data.movie === undefined || isFetching) {
@@ -56,6 +62,7 @@ function MovieListScreen({navigation}: Props) {
         data={data}
         renderItem={CardItem}
         navigation={navigation}
+        onPosterClick={onCallbackRecieved}
       />
     );
   }

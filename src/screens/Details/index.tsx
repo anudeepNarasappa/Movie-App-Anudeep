@@ -9,6 +9,7 @@ import {
   ImageBackground,
   ScrollView,
   TouchableOpacity,
+
 } from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
@@ -16,6 +17,7 @@ import {fetchDataSource, fetchPosterDetails} from '../../store/epic';
 import PosterContainer from '../../components/PosterContainer';
 import CardItem from '../../components/CardItem';
 import {TouchableHighlight} from 'react-native-gesture-handler';
+import MovieListScreen from '../Home';
 type RootStackParamList = {
   MovieListScreen: {};
 };
@@ -40,16 +42,11 @@ function MovieDetailsScreen({navigation}: Props) {
   const {data} = dataReducer;
 
   //2 - MAIN CODE BEGINS HERE
-  useEffect(() => getData(), []);
 
-  //3 - GET FLATLIST DATA
-  const getData = () => {
-    setIsFetching(true);
-    setTimeout(() => {
-      dispatch(fetchPosterDetails());
-      setIsFetching(false);
-    }, 1000);
-  };
+  const callPrevScreen =() => {
+    dispatch(fetchDataSource());
+    navigation.navigate('MoviesListScreen');
+  }
 
   if (data.Title !== undefined) {
     return (
@@ -160,6 +157,14 @@ function MovieDetailsScreen({navigation}: Props) {
             <Text style={styles.buyTicket}>BUY TICKET</Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => callPrevScreen()}
+          style={styles.back}>
+          <Image
+            style={styles.backImg}
+            source={require('../../images/icons/back.png')}
+          />
+        </TouchableOpacity>
       </SafeAreaView>
     );
   } else {
@@ -172,6 +177,15 @@ function MovieDetailsScreen({navigation}: Props) {
 }
 
 const styles = StyleSheet.create({
+  back: {
+    left: 10,
+    top: 60,
+    position: 'absolute',
+  },
+  backImg:{
+    width: 18,
+    height: 10,
+  },
   buyTicket: {
     color: '#ffffff',
     fontStyle: 'normal',

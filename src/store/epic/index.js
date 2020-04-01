@@ -5,7 +5,7 @@ import axios from 'axios';
 let one = 'http://www.omdbapi.com/?apikey=b9bd48a6&s=Marvel&Type=movie';
 let two = 'http://www.omdbapi.com/?apikey=b9bd48a6&s=Marvel&Type=series';
 let three = 'http://www.omdbapi.com/?apikey=b9bd48a6&s=Marvel&Type=game';
-let item_URL = 'http://www.omdbapi.com/?apikey=b9bd48a6&i=tt4154664';
+let item_URL = 'http://www.omdbapi.com/?apikey=b9bd48a6&i=';
 export const fetchDataSource = () => {
   return (dispatch) => {
     const requestOne = axios.get(one);
@@ -34,7 +34,7 @@ export const fetchDataSource = () => {
 
 export const fetchPosterDetails = (id) => {
   return (dispatch) => {
-    axios.get(item_URL).then((res) => {
+    axios.get(item_URL + id).then((res) => {
       const poster_data = res.data;
       dispatch(getPosterDetails(poster_data));
     });

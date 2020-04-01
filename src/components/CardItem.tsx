@@ -8,8 +8,7 @@ import {
   Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-const CardItem = (props) => {
-  const {item, index} = props;
+const CardItem = ( {item, index,onPosterClick} ) => {
   const box_size_style = item.Type === 'movie' ? styles.row : styles.min_size;
   const img_style_view =
     item.Type === 'movie' ? styles.imageView : styles.min_img_size;
@@ -21,7 +20,7 @@ const CardItem = (props) => {
 
   return (
     <View style={[box_size_style]}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => onPosterClick(item.imdbID)}>
         <View>
           <Image source={{uri: img_uri}} style={[img_style_view]} />
           <Text style={styles.title} numberOfLines={no_of_lines}>

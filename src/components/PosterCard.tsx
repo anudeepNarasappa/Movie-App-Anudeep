@@ -10,6 +10,14 @@ import {
 } from 'react-native';
 import CardItem from '../components/CardItem';
 const Cards = (props) => {
+  const onCallbackRecieved = (id) => {
+    props.onPosterImageClick(id);
+  };
+  const _renderItem = ({item, index}) => {
+    return (
+      <CardItem item={item} index={index} onPosterClick={onCallbackRecieved} />
+    );
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -21,7 +29,7 @@ const Cards = (props) => {
 
           <FlatList
             data={props.data}
-            renderItem={CardItem}
+            renderItem={_renderItem}
             horizontal={true}
             extraData={props}
             keyExtractor={(item, index) => `flat_${index}`}

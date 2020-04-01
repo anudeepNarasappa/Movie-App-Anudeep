@@ -9,7 +9,9 @@ const dataReducer = (state = dataState, action) => {
     case GET_DATA:
       return {...state, data: action.payload};
     case GET_POSTER_DATA:
-      return {data: action.payload};
+      if (action.payload.Response !== 'False') {
+        return {data: action.payload};
+      }
     default:
       return state;
   }

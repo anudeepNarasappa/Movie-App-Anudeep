@@ -9,8 +9,11 @@ import {
 } from 'react-native';
 import PosterCard from './PosterCard';
 
+
 const PosterContainer = (props) => {
-  console.log(props);
+  const onCallback = (id) => {
+    props.onPosterClick(id);
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -19,18 +22,21 @@ const PosterContainer = (props) => {
           renderItem={props.renderItem}
           navigation={props.navigation}
           TitleHeader={'Movies on Theater'}
+          onPosterImageClick={onCallback}
         />
         <PosterCard
           data={props.data.series.data.Search}
           renderItem={props.renderItem}
           navigation={props.navigation}
           TitleHeader={'Comming Soon'}
+          onPosterImageClick={onCallback}
         />
         <PosterCard
           data={props.data.game.data.Search}
           renderItem={props.renderItem}
           navigation={props.navigation}
           TitleHeader={'Jan 16'}
+          onPosterImageClick={onCallback}
         />
       </ScrollView>
     </SafeAreaView>
