@@ -19,3 +19,11 @@
   3. Do " npm install "
   4. Do pod install " cd ios; pod install; cd .. "
   5. Run the command " npm run ios or android " to run the app
+
+# Folder Structure
+   .
+   ├── src/images                  # images assets of the app
+   ├── src/components              # all public shared components
+   ├── src/screens                 # all screens of the app
+   ├── src/store                   # redux setup of the app
+   ├── src/Utils                   # constants of the app
