@@ -11,6 +11,18 @@
   3. Hooks
   4. react-navigation
   5. Redux and redux-thunk
+  
+  
+# Folder Structure
+
+    .
+    ├── build                   # Compiled files (alternatively `dist`)
+    ├── docs                    # Documentation files (alternatively `doc`)
+    ├── src                     # Source files (alternatively `lib` or `app`)
+    ├── test                    # Automated tests (alternatively `spec` or `tests`)
+    ├── tools                   # Tools and utilities
+    ├── LICENSE
+    └── README.md
 
 
 # How to run the Movie App ?
