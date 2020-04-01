@@ -3,12 +3,13 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  ActivityIndicator,
+  TouchableOpacity,
   View,
   Image,
 } from 'react-native';
-
-const CardItem = ({item, index}) => {
+import AsyncStorage from '@react-native-community/async-storage';
+const CardItem = (props) => {
+  const {item, index} = props;
   const box_size_style = item.Type === 'movie' ? styles.row : styles.min_size;
   const img_style_view =
     item.Type === 'movie' ? styles.imageView : styles.min_img_size;
@@ -16,15 +17,30 @@ const CardItem = ({item, index}) => {
     item.Poster === 'N/A'
       ? 'https://m.media-amazon.com/images/M/MV5BNDFhMDgwNTctNWY4Zi00ZDA2LWJkYzUtZGIzZDVkMjA1MGMyXkEyXkFqcGdeQXVyNDA5ODU0NDg@._V1_SX300.jpg'
       : item.Poster;
-      const no_of_lines = item.Type === 'movie' ? 1 : 2;
+  const no_of_lines = item.Type === 'movie' ? 1 : 2;
+
   return (
     <View style={[box_size_style]}>
-      <Image source={{uri: img_uri}} style={[img_style_view]} />
-      <Text style={styles.title} numberOfLines={no_of_lines}>
-        {item.Title}
-      </Text>
+      <TouchableOpacity>
+        <View>
+          <Image source={{uri: img_uri}} style={[img_style_view]} />
+          <Text style={styles.title} numberOfLines={no_of_lines}>
+            {item.Title}
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
+}
+
+
+
+const storeData = async (id) => {
+  try {
+    await AsyncStorage.setItem('IMDB_ID', id);
+  } catch (e) {
+    // saving error
+  }
 };
 
 const styles = StyleSheet.create({
@@ -96,7 +112,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 16,
     color: '#FFFFFF',
-    marginTop:9
+    marginTop: 9,
   },
 
   description: {

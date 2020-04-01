@@ -6,7 +6,9 @@ import {
   ScrollView,
   View,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
+import CardItem from '../components/CardItem';
 const Cards = (props) => {
   return (
     <SafeAreaView style={styles.container}>
@@ -19,12 +21,12 @@ const Cards = (props) => {
 
           <FlatList
             data={props.data}
-            renderItem={props.renderItem}
+            renderItem={CardItem}
             horizontal={true}
+            extraData={props}
             keyExtractor={(item, index) => `flat_${index}`}
           />
         </View>
-    
       </ScrollView>
     </SafeAreaView>
   );
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
   },
 
   seeAll: {
-    marginTop:28,
+    marginTop: 28,
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 15,

@@ -18,7 +18,7 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
 };
 
-export default function MovieListScreen({navigation}: Props) {
+function MovieListScreen({navigation}: Props) {
   const dispatch = useDispatch();
 
   //1 - DECLARE VARIABLES
@@ -37,21 +37,27 @@ export default function MovieListScreen({navigation}: Props) {
     setTimeout(() => {
       dispatch(fetchDataSource());
       setIsFetching(false);
-    }, 2000);
+    }, 1000);
   };
 
   //4 - RENDER FLATLIST ITEM
-  <CardItem />;
+  // <CardItem sendPosterId={sendPosterIds} />;
 
   //5 - RENDER
-  if (data["movie"] === undefined || isFetching) {
+  if (data.movie === undefined || isFetching) {
     return (
       <SafeAreaView style={styles.activityIndicatorContainer}>
         <ActivityIndicator animating={true} />
       </SafeAreaView>
     );
   } else {
-    return <PosterContainer data={data} renderItem={CardItem} />;
+    return (
+      <PosterContainer
+        data={data}
+        renderItem={CardItem}
+        navigation={navigation}
+      />
+    );
   }
 }
 
@@ -63,3 +69,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default MovieListScreen;

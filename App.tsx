@@ -15,7 +15,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <RootStack.Navigator
-          initialRouteName="MoviesListScreen"
+          initialRouteName="MovieListScreen"
           headerMode="none">
           <RootStack.Screen
             name="MoviesListScreen"

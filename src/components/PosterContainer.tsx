@@ -17,16 +17,19 @@ const PosterContainer = (props) => {
         <PosterCard
           data={props.data.movie.data.Search}
           renderItem={props.renderItem}
+          navigation={props.navigation}
           TitleHeader={'Movies on Theater'}
         />
         <PosterCard
           data={props.data.series.data.Search}
           renderItem={props.renderItem}
+          navigation={props.navigation}
           TitleHeader={'Comming Soon'}
         />
         <PosterCard
           data={props.data.game.data.Search}
           renderItem={props.renderItem}
+          navigation={props.navigation}
           TitleHeader={'Jan 16'}
         />
       </ScrollView>
