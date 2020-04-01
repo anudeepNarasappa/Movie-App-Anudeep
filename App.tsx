@@ -1,6 +1,5 @@
-import React, {Fragment, useEffect} from 'react';
-import {View, Text} from 'react-native';
-import {Provider, connect} from 'react-redux';
+import React, {useEffect} from 'react';
+import {Provider} from 'react-redux';
 import store from './src/store/store'; //Import the store
 import {NavigationContainer} from '@react-navigation/native';
 import {
@@ -11,11 +10,12 @@ import {
 import MovieListScreen from './src/screens/Home';
 import MovieDetailsScreen from './src/screens/Details';
 import SplashScreen from 'react-native-splash-screen';
+
 // Create our stack navigator
 let RootStack = createStackNavigator();
 
 const MyTransition = {
-  gestureDirection: 'vertical',
+  gestureDirection: 'horizontal',
   transitionSpec: {
     open: TransitionSpecs.TransitionIOSSpec,
     close: TransitionSpecs.TransitionIOSSpec,

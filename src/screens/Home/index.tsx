@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, ActivityIndicator, SafeAreaView} from 'react-native';
+import {ActivityIndicator, SafeAreaView} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchDataSource, fetchPosterDetails} from '../../store/epic';
 import PosterContainer from '../../components/PosterContainer';
-import CardItem from '../../components/CardItem';
+import {CardItem} from '../../components/CardItem';
+import {styles} from './style';
+
 type RootStackParamList = {
   MovieDetailsScreen: {};
 };
@@ -40,14 +42,10 @@ function MovieListScreen({navigation}: Props) {
     }, 500);
   };
 
-  //4 - RENDER FLATLIST ITEM
-  // <CardItem sendPosterId={sendPosterIds} />;
-
-  const onCallbackRecieved= (id)=>{
-    console.log(id);
+  const onCallbackRecieved = (id: String) => {
     dispatch(fetchPosterDetails(id));
     navigation.navigate('MovieDetailsScreen');
-  }
+  };
 
   //5 - RENDER
   if (data.movie === undefined || isFetching) {
@@ -67,14 +65,5 @@ function MovieListScreen({navigation}: Props) {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  activityIndicatorContainer: {
-    backgroundColor: '#1D1E28',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
-});
 
 export default MovieListScreen;

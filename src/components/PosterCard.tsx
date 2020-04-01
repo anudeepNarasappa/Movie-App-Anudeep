@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   FlatList,
   StyleSheet,
@@ -6,9 +6,8 @@ import {
   ScrollView,
   View,
   SafeAreaView,
-  TouchableOpacity,
 } from 'react-native';
-import CardItem from '../components/CardItem';
+import {CardItem} from './CardItem';
 const Cards = (props) => {
   const onCallbackRecieved = (id) => {
     props.onPosterImageClick(id);

@@ -8,14 +8,27 @@ import {
   SafeAreaView,
 } from 'react-native';
 import PosterCard from './PosterCard';
-
+import {SearchBar} from 'react-native-elements';
 
 const PosterContainer = (props) => {
   const onCallback = (id) => {
     props.onPosterClick(id);
-  }
+  };
+  const SearchFilterFunction = (text) => {
+    setQuery(text);
+  };
+
+  const [query, setQuery] = useState('');
   return (
     <SafeAreaView style={styles.container}>
+      <View>
+        <SearchBar
+          round
+          placeholder="Search your Favourites..."
+          onChangeText={SearchFilterFunction}
+          value={query}
+        />
+      </View>
       <ScrollView>
         <PosterCard
           data={props.data.movie.data.Search}
