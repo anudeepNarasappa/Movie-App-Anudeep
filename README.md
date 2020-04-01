@@ -1,4 +1,6 @@
-![](./src/images/icons/myScreenshot.jpeg)
+![](./src/images/icons/myScreenshot1.jpeg)
+![](./src/images/icons/myScreenshot2.jpeg)
+![](./src/images/icons/myScreenshot3.jpeg)
 
 # About Movie App
   The movie app is build using react native. App will fetch the list of movies from the given Api and show them on 
