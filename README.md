@@ -1,4 +1,4 @@
-![](https://www.youtube.com/watch?v=bIngfKyJyUw)
+![](./src/images/myScreenshot.jpeg)
 
 # About Movie App
   The movie app is build using react native. App will fetch the list of movies from the given Api and show them on 
