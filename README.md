@@ -1,3 +1,9 @@
+   <iframe width="560" height="315"
+src="https://www.youtube.com/watch?v=bIngfKyJyUw" 
+frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
 # About Movie App
   The movie app is build using react native. App will fetch the list of movies from the given Api and show them on 
   horizontal lists. On press the particular movie and it will go the detail page of that movie and display relevant 
@@ -13,17 +19,6 @@
   5. Redux and redux-thunk
   
   
-# Folder Structure
-
-    .
-    ├── build                   # Compiled files (alternatively `dist`)
-    ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
-    ├── LICENSE
-    └── README.md
-
 
 # How to run the Movie App ?
   1. Clone the project with the " git clone https://github.com/anudeepNarasappa/Movie-App-Anudeep.git "
